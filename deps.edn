@@ -1,10 +1,20 @@
 ;; saifu — Cosmos/EVM wallet. 権限は popup ではなく値（ADR-2608039900）。
 ;;
-;; 依存が無いのは意図的: address と policy は純粋関数だけで書かれており、
-;; 暗号プリミティブもネットワークもこの層には無い。**資金も鍵も無しに
-;; 正しさを証明できる範囲**を、依存の無さで示している。
+;; address と policy は依存ゼロの純粋関数のまま（資金も鍵も無しに正しさを
+;; 証明できる範囲を、依存の無さで示す）。tx / sign が持ち込む依存は 2 つだけ:
+;;   dev-protobuf — SIGN_MODE_DIRECT の wire format（機構、schema は saifu.tx が
+;;                  data で持つ）
+;;   wallet       — signer seam（ADR-2608241100。鍵は seam の向こう側 = 本番は
+;;                  kagi の vault から出ない。btc/eth-crypto は wallet 自身の
+;;                  pin 経由で、crypto 機構の version truth を 1 本化）
 {:paths ["src" "resources"]
- :deps {org.clojure/clojure {:mvn/version "1.12.0"}}
+ :deps {org.clojure/clojure {:mvn/version "1.12.0"}
+        io.github.kotoba-lang/dev-protobuf
+        {:git/url "https://github.com/kotoba-lang/dev-protobuf.git"
+         :git/sha "3f20b1e1cdbe89750d8afaf24f64777a2f170c3c"}
+        io.github.kotoba-lang/wallet
+        {:git/url "https://github.com/kotoba-lang/wallet.git"
+         :git/sha "18394178cb40c7fbfe67904135486c166d699dc5"}}
  :aliases
  {:test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner

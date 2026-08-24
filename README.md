@@ -19,12 +19,13 @@ agent であり、**popup を出す相手がいない**。そこで普通に起�
 |---|---|---|
 | `saifu.address` | 純粋 | **実装済み**（bech32 / BIP-173） |
 | `saifu.policy`  | 純粋 | **実装済み**（attenuate は単調） |
-| `saifu.tx`      | `.cljc` | 未実装（Cosmos Tx 正準化・SIGN_MODE_DIRECT） |
-| `saifu.sign`    | `.cljc` + capability | 未実装（**鍵は kagi から出さない**） |
+| `saifu.tx`      | 純粋 | **実装済み**（SIGN_MODE_DIRECT 正準化。cosmjs 生成ベクタと **byte 一致**で検査 — `test/saifu/direct_test.clj`） |
+| `saifu.sign`    | `.cljc` + signer seam | **実装済み**（`wallet.signer/Signer` 経由 — **鍵は kagi から出さない**。署名の前に必ず `saifu.policy/gate`、`:commit` 以外はデータで拒否。64 byte 署名も cosmjs と一致） |
 | `saifu.broadcast` | `.cljc` + capability | 未実装 |
 
 実装順が address → policy → tx → sign → broadcast なのは、**前半 3 つが資金も鍵も
-無しに正しさを証明できる**から。そこまで landed にしてから鍵に触る。
+無しに正しさを証明できる**から。sign は ADR-2608241100 の signer seam
+（本番 custody は `kagi.chain-signer` — 全署名が governor 検閲 + append-only 台帳）に載った。
 
 ## 実装しないもの
 
