@@ -18,7 +18,7 @@
 
   Cosmos は **bech32（チェックサム定数 1）**。bech32m（0x2bc830a3、BIP-350）は
   Segwit v1+ 用。**混ぜると検査を通る別のアドレスが出る**ので定数を明示する。"
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def charset
   "bech32 のデータ文字。1/b/i/o は視認性のため除外されている（BIP-173）。"
@@ -103,8 +103,8 @@
    同じアドレスになり、目視確認が意味を失う。"
   [s]
   (when (and (string? s) (seq s) (<= (count s) 90)
-             (or (= s (str/lower-case s)) (= s (str/upper-case s))))
-    (let [s (str/lower-case s)
+             (or (= s (str/lower s)) (= s (str/upper s))))
+    (let [s (str/lower s)
           pos (str/last-index-of s "1")]
       (when (and pos (>= pos 1) (<= (+ pos 7) (count s)))
         (let [hrp (subs s 0 pos)

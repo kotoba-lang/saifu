@@ -4,7 +4,7 @@
   捏造したベクタで通しても意味がないので、実チェーンの口座を使う。
   `ripemd160(sha256(pubkey))` はベクタ側が与えるので、この repo が暗号
   プリミティブを実装しなくても encode/decode の正しさを証明できる。"
-  (:require [clojure.test :refer [deftest testing is]]
+  (:require [kotoba.lang.text] [clojure.test :refer [deftest testing is]]
             [clojure.edn :as edn]
             [clojure.java.io :as io]
             [saifu.address :as a]))
@@ -59,8 +59,8 @@
   (testing "BIP-173: 大小混在は拒否。許すと見た目の違う 2 つが同じアドレスになる"
     (let [addr (:address (first vectors))]
       (is (some? (a/decode addr)))
-      (is (some? (a/decode (clojure.string/upper-case addr))))
-      (is (nil? (a/decode (str (clojure.string/upper-case (subs addr 0 5))
+      (is (some? (a/decode (kotoba.lang.text/upper addr))))
+      (is (nil? (a/decode (str (kotoba.lang.text/upper (subs addr 0 5))
                                (subs addr 5))))))))
 
 (deftest convert-bits-distinguishes-failure-from-empty
