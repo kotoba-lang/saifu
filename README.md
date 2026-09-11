@@ -40,7 +40,7 @@ agent であり、**popup を出す相手がいない**。そこで普通に起�
 (address, hash160) の対。捏造ベクタで通しても意味がないため。
 
 ```bash
-clojure -M:test
+kbb -M:test
 ```
 
 ## 状態
