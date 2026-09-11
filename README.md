@@ -19,7 +19,7 @@ agent であり、**popup を出す相手がいない**。そこで普通に起�
 |---|---|---|
 | `saifu.address` | 純粋 | **実装済み**（bech32 / BIP-173） |
 | `saifu.policy`  | 純粋 | **実装済み**（attenuate は単調） |
-| `saifu.tx`      | 純粋 | **実装済み**（SIGN_MODE_DIRECT 正準化。cosmjs 生成ベクタと **byte 一致**で検査 — `test/saifu/direct_test.clj`） |
+| `saifu.tx`      | 純粋 | **実装済み**（SIGN_MODE_DIRECT 正準化。cosmjs 生成ベクタと **byte 一致**で検査 — `test/saifu/direct_test.cljk`） |
 | `saifu.sign`    | `.cljc` + signer seam | **実装済み**（`wallet.signer/Signer` 経由 — **鍵は kagi から出さない**。署名の前に必ず `saifu.policy/gate`、`:commit` 以外はデータで拒否。64 byte 署名も cosmjs と一致） |
 | `saifu.broadcast` | `.cljc` + capability | 未実装 |
 
