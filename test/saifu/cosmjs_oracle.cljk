@@ -1,8 +1,8 @@
 ;; cosmjs_oracle.cljs — regenerates the cross-implementation SIGN_MODE_DIRECT
 ;; vector in direct_test.clj with cosmjs (the reference TS implementation).
-;; NOT run by `clojure -M:test` (it needs node + npm): from an empty dir,
+;; NOT run by `kbb -M:test` (it needs node + npm): from an empty dir,
 ;;   npm install @cosmjs/proto-signing @cosmjs/crypto @cosmjs/encoding cosmjs-types
-;;   nbb cosmjs_oracle.cljs
+;;   kbb --backend sci cosmjs_oracle.cljk
 ;; Vector generated 2026-08-24 with the then-current cosmjs (proto-signing 0.3x).
 ;; If this script's output ever disagrees with direct_test.clj, one of the two
 ;; implementations changed its bytes — find out WHICH before touching the test.
