@@ -8,8 +8,8 @@
   SIGN_MODE_DIRECT は protobuf のフィールド順・省略規則を 1 つ間違えると
   署名が通らないか、最悪『別の tx に署名する』。だからこの ns の出力は
   **cosmjs（参照実装）が生成した実ベクタと byte 一致**で検査する
-  （`test/saifu/direct_test.clj`。ベクタの再生成は
-  `test/saifu/cosmjs_oracle.cljs` — nbb + npm の @cosmjs/proto-signing）。
+  （`test/saifu/direct_test.cljk`。ベクタの再生成は
+  `test/saifu/cosmjs_oracle.cljk` — nbb + npm の @cosmjs/proto-signing）。
 
   ## proto3 の既定値は『書かない』
 
