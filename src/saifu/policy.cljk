@@ -27,7 +27,7 @@
   `gate` は累計消費 `spent` を **引数で受け取る**。プロセス内のカウンタを持たない
   のは意図的で、同じ鍵を 2 プロセスが使えば内部カウンタは黙って 2 倍を許す。
   呼び出し側は kagi の append-only 台帳から `spent` を出す（ADR-2608039900 決定 3）。"
-  (:require [clojure.set :as set]))
+  (:require [kotoba.lang.coll :as set]))
 
 (def dispositions
   "厳しい順。**index が大きいほど厳しい** —— 比較で『少なくとも同じだけ厳しい』を
