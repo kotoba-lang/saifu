@@ -2,7 +2,7 @@
   "policy は **値** であり、attenuate は単調でなければならない。
 
   ここが崩れると『agent に狭めた権限を渡した』が嘘になる。"
-  (:require [clojure.test :refer [deftest testing is]]
+  (:require [kotoba.test :refer [deftest testing is]]
             [saifu.policy :as p]))
 
 (def owner
