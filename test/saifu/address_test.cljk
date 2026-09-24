@@ -4,7 +4,7 @@
   捏造したベクタで通しても意味がないので、実チェーンの口座を使う。
   `ripemd160(sha256(pubkey))` はベクタ側が与えるので、この repo が暗号
   プリミティブを実装しなくても encode/decode の正しさを証明できる。"
-  (:require [kotoba.lang.text] [clojure.test :refer [deftest testing is]]
+  (:require [kotoba.lang.text] [kotoba.test :refer [deftest testing is]]
             [clojure.edn :as edn]
             [clojure.java.io :as io]
             [saifu.address :as a]))
