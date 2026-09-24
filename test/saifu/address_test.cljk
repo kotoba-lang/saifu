@@ -6,7 +6,7 @@
   プリミティブを実装しなくても encode/decode の正しさを証明できる。"
   (:require [kotoba.lang.text] [kotoba.test :refer [deftest testing is]]
             [kotoba.lang.edn :as edn]
-            [clojure.java.io :as io]
+            [kotoba.io :as io]
             [saifu.address :as a]))
 
 (def vectors (edn/read-string (slurp (io/file "test/saifu/vectors.edn"))))
